@@ -1,0 +1,812 @@
+{
+	"info": {
+		"_postman_id": "0885e520-0f3c-4c64-950c-9cd3d3e813e4",
+		"name": "Final Tier",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21487523"
+	},
+	"item": [
+		{
+			"name": "1st",
+			"item": [
+				{
+					"name": "Happy Path",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Check response body\", function () {\r",
+									"    const body = pm.response.json();\r",
+									"    pm.expect(body.results).to.be.a('array');\r",
+									"\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-RapidAPI-Key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{api-key}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{mainHost}}/words/hello",
+							"protocol": "https",
+							"host": [
+								"{{mainHost}}"
+							],
+							"path": [
+								"words",
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Other language",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Check response body\", function () {\r",
+									"    const body = pm.response.json();\r",
+									"    pm.expect(body.message).to.be.a('string');\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct response\", () => {\r",
+									"const responseJson = pm.response.json();\r",
+									"pm.expect(responseJson.message).to.eql(\"word not found\");\r",
+									"pm.expect(responseJson.success).to.eql(false)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-RapidAPI-Key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{api-key}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{mainHost}}/words/привет",
+							"protocol": "https",
+							"host": [
+								"{{mainHost}}"
+							],
+							"path": [
+								"words",
+								"привет"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "non-existing word",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Check response body\", function () {\r",
+									"    const body = pm.response.json();\r",
+									"    pm.expect(body.message).to.be.a('string');\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct response\", () => {\r",
+									"const responseJson = pm.response.json();\r",
+									"pm.expect(responseJson.message).to.eql(\"word not found\");\r",
+									"pm.expect(responseJson.success).to.eql(false)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-RapidAPI-Key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{api-key}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{mainHost}}/words/aaaaaa",
+							"protocol": "https",
+							"host": [
+								"{{mainHost}}"
+							],
+							"path": [
+								"words",
+								"aaaaaa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "empty request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Check response body\", function () {\r",
+									"    const body = pm.response.json();\r",
+									"    pm.expect(body.message).to.be.a('string');\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct response\", () => {\r",
+									"const responseJson = pm.response.json();\r",
+									"pm.expect(responseJson.message).to.eql(\"Word is required.\");\r",
+									"pm.expect(responseJson.success).to.eql(false)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-RapidAPI-Key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{api-key}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{mainHost}}/words/",
+							"protocol": "https",
+							"host": [
+								"{{mainHost}}"
+							],
+							"path": [
+								"words",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "only 'space'",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Check response body\", function () {\r",
+									"    const body = pm.response.json();\r",
+									"    pm.expect(body.message).to.be.a('string');\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct response\", () => {\r",
+									"const responseJson = pm.response.json();\r",
+									"pm.expect(responseJson.message).to.eql(\"word not found\");\r",
+									"pm.expect(responseJson.success).to.eql(false)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-RapidAPI-Key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{api-key}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{mainHost}}/words/ ",
+							"protocol": "https",
+							"host": [
+								"{{mainHost}}"
+							],
+							"path": [
+								"words",
+								" "
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "phrase",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Check response body\", function () {\r",
+									"    const body = pm.response.json();\r",
+									"    pm.expect(body.results).to.be.a('array');\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-RapidAPI-Key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{api-key}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{mainHost}}/words/by the way",
+							"protocol": "https",
+							"host": [
+								"{{mainHost}}"
+							],
+							"path": [
+								"words",
+								"by the way"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2 random words",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Check response body\", function () {\r",
+									"    const body = pm.response.json();\r",
+									"    pm.expect(body.message).to.be.a('string');\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct response\", () => {\r",
+									"const responseJson = pm.response.json();\r",
+									"pm.expect(responseJson.message).to.eql(\"word not found\");\r",
+									"pm.expect(responseJson.success).to.eql(false)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-RapidAPI-Key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{api-key}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{mainHost}}/words/shattered dreams",
+							"protocol": "https",
+							"host": [
+								"{{mainHost}}"
+							],
+							"path": [
+								"words",
+								"shattered dreams"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2nd",
+			"item": [
+				{
+					"name": "Happy Path",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Check response body\", function () {\r",
+									"    const body = pm.response.json();\r",
+									"    pm.expect(body.antonyms).to.be.an('array');\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-RapidAPI-Key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{api-key}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{mainHost}}/words/ugly/antonyms",
+							"protocol": "https",
+							"host": [
+								"{{mainHost}}"
+							],
+							"path": [
+								"words",
+								"ugly",
+								"antonyms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "empty request (space in word (404))",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Check response body\", function () {\r",
+									"    const body = pm.response.json();\r",
+									"    pm.expect(body.message).to.be.a('string');\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct response\", () => {\r",
+									"const responseJson = pm.response.json();\r",
+									"pm.expect(responseJson.message).to.eql(\"word not found\");\r",
+									"pm.expect(responseJson.success).to.eql(false)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-RapidAPI-Key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{api-key}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{mainHost}}/words/ /synonyms",
+							"protocol": "https",
+							"host": [
+								"{{mainHost}}"
+							],
+							"path": [
+								"words",
+								" ",
+								"synonyms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2 random words",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Check response body\", function () {\r",
+									"    const body = pm.response.json();\r",
+									"    pm.expect(body.message).to.be.a('string');\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct response\", () => {\r",
+									"const responseJson = pm.response.json();\r",
+									"pm.expect(responseJson.message).to.eql(\"word not found\");\r",
+									"pm.expect(responseJson.success).to.eql(false)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-RapidAPI-Key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{api-key}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{mainHost}}/words/shattered dreams/partOf",
+							"protocol": "https",
+							"host": [
+								"{{mainHost}}"
+							],
+							"path": [
+								"words",
+								"shattered dreams",
+								"partOf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "phrase",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Check response body\", function () {\r",
+									"    const body = pm.response.json();\r",
+									"    pm.expect(body.definition).to.be.an('array');\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-RapidAPI-Key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{api-key}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{mainHost}}/words/by the way/definition",
+							"protocol": "https",
+							"host": [
+								"{{mainHost}}"
+							],
+							"path": [
+								"words",
+								"by the way",
+								"definition"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "non-existing word",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 3000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"pm.test(\"Check response body\", function () {\r",
+									"    const body = pm.response.json();\r",
+									"    pm.expect(body.message).to.be.a('string');\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct response\", () => {\r",
+									"const responseJson = pm.response.json();\r",
+									"pm.expect(responseJson.message).to.eql(\"word not found\");\r",
+									"pm.expect(responseJson.success).to.eql(false)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "X-RapidAPI-Key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{api-key}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{mainHost}}/words/aaaaaa/partOf",
+							"protocol": "https",
+							"host": [
+								"{{mainHost}}"
+							],
+							"path": [
+								"words",
+								"aaaaaa",
+								"partOf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
